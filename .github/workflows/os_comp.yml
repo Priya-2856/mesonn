@@ -39,7 +39,7 @@ jobs:
             python3 -m pip install meson
             python3 -m pip install pytest ninja
             export MESON_UNIT_TEST_BACKEND=ninja
-            ./run_unittests.py
+            pytest
       
   test_arm64: 
      runs-on: ubuntu-latest
