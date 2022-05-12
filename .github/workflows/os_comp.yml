@@ -25,7 +25,7 @@ jobs:
       # They are defined in the `env` section in each image.json. CI_ARGS should be set
       # via the `args` array ub the image.json
       run:  sudo apt-get update && sudo apt-get -y install python3.8 curl git
-            sudo ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && export DEBIAN_FRONTEND=noninteractive && sudo apt-get install -y tzdata && sudo dpkg-reconfigure --frontend noninteractive tzdata
+            ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && export DEBIAN_FRONTEND=noninteractive && sudo apt-get install -y tzdata && sudo dpkg-reconfigure --frontend noninteractive tzdata
             sudo apt-get -y install software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt-get -y update
             sudo apt install -y python3 python3-pip python3-venv && python3 -m venv venv38 && source venv38/bin/activate
             python3 -m pip install --upgrade pip
