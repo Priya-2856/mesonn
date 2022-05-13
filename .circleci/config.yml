@@ -49,7 +49,6 @@ jobs:
                 sudo apt-get install libatf-c++-2  gcc g++  -y
                 sudo apt-get --allow-downgrades install dub mono-complete
                 sh <(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs) -y --default-toolchain beta
-                source $HOME/.cargo/env
                 python3.8 setup.py install
                 python3.8 -m pip install meson
                 python3.8 -m pip install pytest ninja
