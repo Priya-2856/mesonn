@@ -48,8 +48,7 @@ jobs:
                 sudo apt-get install cython -y
                 sudo apt-get install libatf-c++-2  gcc g++  -y
                 sudo apt-get --allow-downgrades install dub mono-complete
-                sudo curl --allow-downgrades https://sh.rustup.rs -sSf | sh
-                source $HOME/.cargo/env               
+                curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --default-toolchain none -y                    
                 python3.8 setup.py install
                 python3.8 -m pip install meson
                 python3.8 -m pip install pytest ninja
