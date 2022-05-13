@@ -20,13 +20,8 @@ jobs:
              python3 setup.py install 
              python3 -m pip install meson
              python3 -m pip install pytest ninja 
-             pip3 install meson
+             pip3 install jsonschema
              export MESON_UNIT_TEST_BACKEND=ninja
-             meson builddir
-             cd /usr/local/bin
-             meson builddir && cd builddir
-             meson compile
-             meson test
              ./run_unittests.py
   build-medium-arm64:
     machine:
@@ -39,14 +34,28 @@ jobs:
       - run:
           name: ️️🏗️ pip dev requirements
           command: |
-             uname -m
-             sudo apt-get update && sudo apt-get -y install python3 python3-pip python3-setuptools python3-wheel ninja-build libgtk-3-dev
-             pip3 install --upgrade pip
-             python3 setup.py install 
-             python3 -m pip install meson
-             python3 -m pip install pytest ninja 
-             export MESON_UNIT_TEST_BACKEND=ninja
-             ./run_unittests.py
+                uname -m
+                sudo apt-get update && sudo apt-get -y install python3 python3-pip python3-setuptools python3-wheel ninja-build libgtk-3-dev
+                sudo apt-get -y install make
+                sudo apt-get -y install autoconf automake build-essential cmake libtool mercurial pkg-config
+                sudo apt-get -y install libgmp-dev libmpfr-dev libmpc-dev libgtest-dev libgirepository1.0-dev
+                sudo apt-get install libglib2.0-dev -y
+                sudo apt-get install llvm-dev -y
+                sudo apt-get install libpq-dev -y libxml2-dev -y libxslt1-dev -y python3-dev -y
+                sudo apt-get -y install openssl libssl-dev libssl1.0 libgl1-mesa-dev libqt5x11extras5 qtcreator zlib1g-dev liblzma-dev libbz2-dev
+                sudo apt-get -y install python-dev libcpputest-dev as31 nasm gfortran valac default-jdk openjdk-8-jdk mono-complete gobject-introspection gtk+-3.0 libboost-all-dev
+                sudo apt-get install tachyon -y
+                sudo apt-get install cython -y
+                sudo apt-get install libatf-c++-2 -y
+                sudo apt-get -y install gcc g++  dmd-compiler dub mono-complete dotnet-sdk
+                curl -fsS https://dlang.org/install.sh | bash -s dmd
+                sh <(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs) -y --default-toolchain beta
+                source $HOME/.cargo/env
+                python3.8 setup.py install
+                python3.8 -m pip install meson
+                python3.8 -m pip install pytest ninja
+                export MESON_UNIT_TEST_BACKEND=ninja
+                ./run_unittests.py
 workflows:
   version: 2
   python3.8:
