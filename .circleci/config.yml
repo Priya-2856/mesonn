@@ -48,7 +48,6 @@ jobs:
                 sudo apt-get install cython -y
                 sudo apt-get install libatf-c++-2  gcc g++  -y
                 sudo apt-get --allow-downgrades install dub mono-complete
-                curl -fsS https://dlang.org/install.sh | bash -s dmd
                 sh <(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs) -y --default-toolchain beta
                 source $HOME/.cargo/env
                 python3.8 setup.py install
