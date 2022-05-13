@@ -21,7 +21,7 @@ jobs:
              python3 -m pip install meson
              python3 -m pip install pytest ninja 
              export MESON_UNIT_TEST_BACKEND=ninja
-             cd /path/to/source/root
+             cd /usr/local/bin
              meson builddir && cd builddir
              meson compile
              meson test
