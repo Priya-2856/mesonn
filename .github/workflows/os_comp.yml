@@ -24,9 +24,9 @@ jobs:
       # All environment variables are stored inside the docker image in /ci/env_vars.sh
       # They are defined in the `env` section in each image.json. CI_ARGS should be set
       # via the `args` array ub the image.json
-      run:  sudo apt-get update && sudo apt-get -y install python3 curl git
-            python3 -m pip install --upgrade pip
-            python3 --version
+      run: |
+            python -m pip install --upgrade pip
+            python --version
             uname -m
             sudo apt-get -y install make
             sudo apt-get -y install autoconf automake build-essential cmake libtool mercurial pkg-config
@@ -35,12 +35,13 @@ jobs:
             sudo apt-get install libpq-dev -y libxml2-dev -y libxslt1-dev -y python3-dev -y
             sudo apt-get install python-dev -y
             sudo apt-get install tachyon -y
-            python3 setup.py install
-            python3 -m pip install meson
-            python3 -m pip install pytest ninja
+            python setup.py install
+            python -m pip install meson
+            python -m pip install pytest ninja
             export MESON_UNIT_TEST_BACKEND=ninja
-            pytest
-    - run: ./run_unittests.py
+    - name: run_unittests
+      run: | 
+          ./run_unittests.py
     
   test_arm64: 
      runs-on: ubuntu-latest
