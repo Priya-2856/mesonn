@@ -82,7 +82,7 @@ jobs:
                 apt-get install tachyon -y && \
                 apt-get install cython -y && \
                 apt-get -y install libatf-c++-2 gobjc gnustep-devel && \
-                apt-get -y install gcc g++  dmd-compiler dub mono-complete dotnet-sdk gettext qt5-default libwmf-bin libgcrypt-devel clang  && \
+                apt-get -y install gcc g++  dub mono-complete gettext qt5-default libwmf-bin clang  && \
                 apt-get -y install sqlite3 libsqlite3-dev libpcap0.8-dev libvulkan1 libsdl2-dev itools flex python3-gi libhdf5-dev gpgme-devel php-gnupg python-gpgme && \
                 curl -fsS https://dlang.org/install.sh | bash -s dmd && \
                 sh <(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs) -y --default-toolchain beta && \
