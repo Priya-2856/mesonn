@@ -64,7 +64,7 @@ jobs:
         run: |
                docker run --rm -v ${{ github.workspace }}:/ws:rw --workdir=/ws \
                arm64v8/ubuntu:20.04 \
-               bash -exc 'apt-get update && apt-get -y install python3.8 curl git && \
+               bash -exc 'apt-get update && apt-get -y install python3.8 curl git wget && \
                 ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata && dpkg-reconfigure --frontend noninteractive tzdata && \
                 apt-get -y install software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt-get -y update && \
                 apt install -y python3.8-venv && python3.8 -m venv venv38 && source venv38/bin/activate && \
@@ -77,14 +77,18 @@ jobs:
                 apt-get install libglib2.0-dev -y && \
                 apt-get install llvm-dev -y && \
                 apt-get install libpq-dev -y libxml2-dev -y libxslt1-dev -y python3-dev -y && \
-                apt-get -y install openssl libssl-dev libssl1.0 libgl1-mesa-dev libqt5x11extras5 qtcreator zlib1g-dev liblzma-dev libbz2-dev && \
+                apt-get -y install openssl libssl-dev libevent-dev libssl1.0 libgl1-mesa-dev libqt5x11extras5 qtcreator zlib1g-dev liblzma-dev libbz2-dev && \
                 apt-get -y install python-dev libcpputest-dev as31 nasm gfortran valac default-jdk openjdk-8-jdk mono-complete gobject-introspection gtk+-3.0 libboost-all-dev && \
                 apt-get install tachyon -y && \
                 apt-get install cython -y && \
                 apt-get -y install libatf-c++-2 gobjc gnustep-devel && \
                 apt-get -y install gcc g++  dub mono-complete gettext qt5-default libwmf-bin clang  && \
                 apt-get -y install sqlite3 libsqlite3-dev libpcap0.8-dev libvulkan1 libsdl2-dev itools flex python3-gi libhdf5-dev php-gnupg && \
-                curl -fsS https://dlang.org/install.sh | bash -s dmd && \
+                wget http://master.dl.sourceforge.net/project/d-apt/files/d-apt.list -O /etc/apt/sources.list.d/d-apt.list && \
+                apt-get update && \
+                apt-get -y --allow-unauthenticated install --reinstall d-apt-keyring && \
+                apt-get update && \
+                apt-get install -y dmd-bin dub && \
                 sh <(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs) -y --default-toolchain beta && \
                 source $HOME/.cargo/env && \
                 python3.8 setup.py install && \
