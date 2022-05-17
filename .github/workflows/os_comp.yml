@@ -85,7 +85,6 @@ jobs:
                 apt-get -y install gcc g++  dub mono-complete gettext qt5-default libwmf-bin clang  && \
                 apt-get -y install sqlite3 libsqlite3-dev libpcap0.8-dev libvulkan1 libsdl2-dev itools flex python3-gi libhdf5-dev php-gnupg && \
                 wget http://master.dl.sourceforge.net/project/d-apt/files/d-apt.list -O /etc/apt/sources.list.d/d-apt.list && \
-                apt-get update && \
                 apt-get install -y dmd-bin dub && \
                 sh <(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs) -y --default-toolchain beta && \
                 source $HOME/.cargo/env && \
